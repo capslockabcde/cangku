@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>母婴亲子日报名表</title>
+    <title>个人网页</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --border-color: #ddd;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,325 +21,340 @@
         }
         
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
+            color: var(--text-color);
+            background-color: var(--bg-color);
         }
         
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a2530);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 0.5rem auto;
+        }
+        
+        .about-content {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
-            padding: 30px 20px;
             text-align: center;
-            color: white;
+            font-size: 1.1rem;
         }
         
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
+        .skill-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .content {
-            padding: 30px;
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
-        .form-section {
-            margin-bottom: 40px;
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
         }
         
-        .form-section h2 {
-            color: #ff6b6b;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
         }
         
-        .form-control {
+        input, textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e5ea;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
         }
         
-        .form-control:focus {
-            border-color: #ff9a9e;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 154, 158, 0.2);
+        textarea {
+            min-height: 150px;
+            resize: vertical;
         }
         
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+        button {
+            background: var(--secondary-color);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+            transition: background 0.3s ease;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.4);
+        button:hover {
+            background: #2980b9;
         }
         
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .info-section {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-        
-        .info-section h3 {
-            color: #ff6b6b;
-            margin-bottom: 15px;
-        }
-        
-        .info-section ul {
-            padding-left: 20px;
-        }
-        
-        .info-section li {
-            margin-bottom: 10px;
-        }
-        
-        .reference-section {
-            margin-top: 40px;
-        }
-        
-        .reference-section h3 {
-            color: #ff6b6b;
-            margin-bottom: 15px;
-        }
-        
-        .reference-item {
-            background: white;
-            border-left: 4px solid #ff9a9e;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .reference-item h4 {
-            color: #333;
-            margin-bottom: 8px;
-        }
-        
-        .reference-item p {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .footer {
+        footer {
+            background: var(--primary-color);
+            color: white;
             text-align: center;
-            padding: 20px;
-            color: #888;
-            font-size: 14px;
-            border-top: 1px solid #eee;
+            padding: 2rem 0;
         }
         
         @media (max-width: 768px) {
             .container {
-                border-radius: 10px;
+                padding: 0 15px;
             }
             
-            .header {
-                padding: 20px 15px;
+            h1 {
+                font-size: 2rem;
             }
             
-            .header h1 {
-                font-size: 24px;
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
             }
             
-            .content {
-                padding: 20px 15px;
+            section {
+                padding: 2rem 0;
             }
-            
-            .form-control, .btn {
-                padding: 12px;
-            }
-        }
-        
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #c3e6cb;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>母婴亲子日报名表</h1>
-            <p>为宝宝和妈妈提供专业的亲子服务</p>
+    <header>
+        <div class="container">
+            <img src="https://via.placeholder.com/150" alt="个人头像" class="profile-img">
+            <h1>张三</h1>
+            <p class="tagline">前端开发工程师 | UI/UX 设计师</p>
+            <div class="social-links">
+                <a href="#" title="GitHub">📱</a>
+                <a href="#" title="LinkedIn">📘</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Email">✉️</a>
+            </div>
         </div>
-        
-        <div class="content">
-            <div class="success-message" id="successMessage">
-                报名成功！感谢您的参与，我们将尽快与您联系。
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <p>我是一名热爱技术与设计的前端开发工程师，拥有5年以上的Web开发经验。专注于创建用户体验优秀的响应式网站和应用程序。</p>
+                <p>擅长HTML5、CSS3、JavaScript等前端技术，熟悉Vue.js、React等现代框架。同时具备UI/UX设计能力，能够从用户角度思考产品设计。</p>
             </div>
-            
-            <div class="form-section">
-                <h2>报名信息</h2>
-                <form id="registrationForm">
-                    <div class="form-group">
-                        <label for="name">姓名 *</label>
-                        <input type="text" id="name" class="form-control" placeholder="请输入您的姓名" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">联系电话 *</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="请输入您的手机号码" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">电子邮箱</label>
-                        <input type="email" id="email" class="form-control" placeholder="请输入您的邮箱地址">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="childAge">宝宝年龄</label>
-                        <select id="childAge" class="form-control">
-                            <option value="">请选择宝宝年龄</option>
-                            <option value="0-6个月">0-6个月</option>
-                            <option value="6-12个月">6-12个月</option>
-                            <option value="1-2岁">1-2岁</option>
-                            <option value="2-3岁">2-3岁</option>
-                            <option value="3岁以上">3岁以上</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">留言</label>
-                        <textarea id="message" class="form-control" rows="4" placeholder="如有特殊需求或问题，请在此留言"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">立即报名</button>
-                </form>
-            </div>
-            
-            <div class="info-section">
-                <h3>服务内容</h3>
-                <ul>
-                    <li>专业的母婴护理指导</li>
-                    <li>亲子互动游戏设计</li>
-                    <li>营养膳食搭配建议</li>
-                    <li>儿童早期教育咨询</li>
-                    <li>定期健康检查提醒</li>
-                </ul>
-            </div>
-            
-            <div class="reference-section">
-                <h3>参考内容</h3>
-                <div class="reference-item">
-                    <h4>中国母婴健康发展报告</h4>
-                    <p>根据最新调查，科学的亲子互动能够显著提升婴幼儿的认知发展水平，建议每周至少进行3次高质量亲子活动。</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">技能专长</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>前端开发</h3>
+                    <p>精通HTML5、CSS3、JavaScript，熟悉ES6+新特性，能够构建现代化的响应式网站。</p>
                 </div>
-                <div class="reference-item">
-                    <h4>0-3岁婴幼儿发展指南</h4>
-                    <p>此阶段是大脑发育的黄金期，适当的感官刺激和语言环境对宝宝智力发展至关重要。</p>
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>移动端开发</h3>
+                    <p>熟练掌握响应式设计原理，能够开发兼容各种设备的移动优先网站。</p>
                 </div>
-                <div class="reference-item">
-                    <h4>母乳喂养与辅食添加</h4>
-                    <p>世界卫生组织建议纯母乳喂养至6个月，之后逐步添加辅食并继续母乳喂养至2岁或更长时间。</p>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX设计</h3>
+                    <p>具备良好的视觉设计能力，熟悉用户体验设计原则，能独立完成界面设计。</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>工具与流程</h3>
+                    <p>熟悉Git版本控制，了解Webpack构建工具，具备敏捷开发实践经验。</p>
                 </div>
             </div>
         </div>
-        
-        <div class="footer">
-            <p>© 2023 母婴亲子日报名系统 | 为宝宝健康成长保驾护航</p>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">项目作品</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://picsum.photos/600/400?random=1" alt="项目1" class="project-img">
+                    <div class="project-info">
+                        <h3>电商网站重构</h3>
+                        <p>负责大型电商平台的前端重构工作，提升页面加载速度40%，优化用户体验。</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://picsum.photos/600/400?random=2" alt="项目2" class="project-img">
+                    <div class="project-info">
+                        <h3>企业管理系统</h3>
+                        <p>使用Vue.js开发的企业级后台管理系统，集成权限管理、数据可视化等功能。</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://picsum.photos/600/400?random=3" alt="项目3" class="project-img">
+                    <div class="project-info">
+                        <h3>移动端应用</h3>
+                        <p>基于React Native开发的跨平台移动应用，实现iOS和Android双平台兼容。</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" placeholder="请输入您的邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="message">留言</label>
+                    <textarea id="message" placeholder="请输入您的留言"></textarea>
+                </div>
+                <button type="submit">发送消息</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 张三个人网站. 保留所有权利.</p>
+            <p>Designed with ❤️</p>
+        </div>
+    </footer>
 
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            // 表单提交处理
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('感谢您的留言！我会尽快回复您。');
+                    this.reset();
+                });
+            }
             
-            // 获取表单数据
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const childAge = document.getElementById('childAge').value;
-            const message = document.getElementById('message').value;
-            
-            // 创建报名记录
-            const registrationData = {
-                name: name,
-                phone: phone,
-                email: email,
-                childAge: childAge,
-                message: message,
-                timestamp: new Date().toLocaleString('zh-CN')
-            };
-            
-            // 检查是否已存在存储数据
-            let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
-            
-            // 添加新记录
-            registrations.push(registrationData);
-            
-            // 保存到本地存储
-            localStorage.setItem('registrations', JSON.stringify(registrations));
-            
-            // 显示成功消息
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // 重置表单
-            this.reset();
-            
-            // 3秒后隐藏成功消息
-            setTimeout(function() {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
-        });
-        
-        // 页面加载时检查是否有存储的数据
-        window.addEventListener('load', function() {
-            const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
-            console.log('当前报名名单:', registrations);
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </body>
